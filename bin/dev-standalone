@@ -1,0 +1,21 @@
+#!/usr/bin/env coffee
+
+# Buttercoin front binary script
+# This binary will start a single instance of a Buttercoin front-facing http webserver
+
+#Buttercoin = require('../lib/buttercoin')
+#butter = new Buttercoin();
+
+#butter.engine.start () ->
+#  butter.api.start () ->
+#    butter.front.start () ->
+
+EngineWebsocketServer = require('../lib/ews/ew_server')
+EngineWebsocketSlave = require('../lib/ews/ew_slave')
+
+engine_websocket_server = new EngineWebsocketServer()
+slave = new EngineWebsocketSlave()
+
+engine_websocket_server.start().then =>
+  slave.start()
+.done()
